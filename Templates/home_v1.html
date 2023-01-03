@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel = "stylesheet" type="text/css" href="{{ url_for('static',filename='Css/core.css') }}">
+<link rel = "stylesheet" href="{{ url_for('static',filename='Css/overpass.css') }}">
+
+
+<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="Static/logo.png" width="112" height="28">
+    </a>
+  </div>
+
+  <div  class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" href="/about">
+        About
+      </a>
+      <a class="navbar-item" href="/signup">
+        Sign up
+        </a>
+      <a class="button is-primary" style="background-color:red ;" href="/login">
+          Log in
+        </a>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="box">
+<div  class="columns">
+
+    <ul class="column is-3">
+
+        <li ><a class="content is-large has-text-black" href="/forinvestors">For Investors</a></li>
+        <li><a class="content is-large has-text-black" href="/forriskanalysis">For Risk Analysis</a></li>
+        <li><a class="content is-large has-text-black" href="/tradingdesk">For Trading Desks</a></li>
+    <hr style="border:2px solid black; border-radius: 1px; width: 70%;" >
+
+    {% for a in top5 %}
+    <li class="columns is-mobile is-centered is-vcentered">
+    <div class="column is-3">
+      <img class="image is-64x64 " src="{{ url_for('static', filename='logos/' + a[0]  + '.png' )}}" alt="">
+    </div>
+    <div class="column is-left is-large">
+      <strong><p>{{a[0]}}</p></strong>
+    </div>
+  </li>
+    {% endfor %}
+    </ul>
+
+    <ul class="column is-half is-right">
+      <br>
+      <div class="column is-centered">
+        <h1 class="content is-size-3 has-text-justified has-text-weight-bold has-text-black ">Daily Market Forecasts</h1>
+      </div>
+
+      
+      <div class="field has-addons ">
+        <form action="/" class="new" role="form" method="POST">
+          <div class="control is-expanded">
+
+            <input class="input" type="text" placeholder="Ticker" id="stocks" list="stocks-list" id="ticker" name="ticker" value="{{request.form.ticker}}">
+            <datalist id="stocks-list">
+              {% for stock in stocks %} 
+              <option>{{ stock[0] }}</option>
+              {% endfor %}
+            </datalist>
+          
+          </div>
+          
+          <div class="control">
+            
+            <button class="button is-info" style="background-color: black;">
+              Search
+            </button>
+          
+          </div>
+        </div>
+      </form>
+        <br>
+        <br>
+
+            <div>
+              <div>
+                <div>
+                {% if display %}
+                  <li class="columns is-mobile is-centered is-vcentered">
+                    <div class="column">
+                      <img class="image is-64x64" src="{{ url_for('static', filename='logos/' + display[0][0]  + '.png' )}}" alt="test" width="80px" height="20px">
+                      <!-- <a href="#" title="Love it" class="btn btn-counter multiple-count" data-count="0"><span>&#x2764;</span> Love it</a></p> -->
+                    </div>
+                    
+                    <div class="column  is-medium">
+                      <p class="content is-right"><p><strong>Open Corr:{{ display[0][2]}}</strong></p>
+                      <p><strong>Close Corr:{{ display[0][3]}}</strong></p></p>
+                    </div>
+                  </li>
+                  <br>
+                  <br>
+                {% else %}
+                  {% for a in random5 %}
+                  <li class="columns is-mobile is-centered is-vcentered">
+                    <!-- <div class="column">
+                      <img class="image is-64x64" src="{{ url_for('static', filename='logos/' + a[0]  + '.png' )}}" alt="test" width="80px" height="20px">
+                      <a href="#" title="Love it" class="btn btn-counter multiple-count" data-count="0"><span>&#x2764;</span> Love it</a></p>
+                    </div> -->
+                    <div class="column ">
+                      <p class="content "><p><strong>OC:{{ a[2]}}</strong></p>
+                      <p><strong>CC:{{ a[3]}}</strong></p></p>
+                    </div>
+                    <div class="column">
+                      <img class="content is-medium image is-64x64" src="{{ url_for('static', filename='logos/' + a[1]  + '.png' )}}" alt="test" width="80px" height="20px">
+                    </div>
+                    <div class="column  is-left">
+                      <p class="content is-left"><p><strong>{{ a[1]}}</strong></p>
+                      
+                    </div>
+                  </li>
+                  {% endfor %}
+
+                <br>
+                <br>
+
+                {% endif %}
+                </div>
+
+
+
+                <h1>CORRELATIONS</h1>
+                <hr>
+                {% for a in display %}
+
+                
+                <li class="columns is-mobile is-centered is-vcentered">
+
+                  <div class="column ">
+                    <p class="content "><p><strong>OC:{{ a[2]}}</strong></p>
+                    <p><strong>CC:{{ a[3]}}</strong></p></p>
+                  </div>
+                  <div class="column">
+                    <img class="content is-medium image is-64x64" src="{{ url_for('static', filename='logos/' + a[1]  + '.png' )}}" alt="test" width="80px" height="20px">
+                  </div>
+                  <div class="column  is-left">
+                    <p class="content is-left"><p><strong>{{ a[1]}}</strong></p>
+                    
+                  </div>
+                </li>
+                
+
+
+            {% endfor %}
+            
+
+              </div>
+
+
+            </div>
+
+        <br>
+        <br>
+            </div>
+      </ul>
+</div>
+</div>
+
+<footer class="footer" style="background-color: white;">
+  <div class="content is-small">
+    <p class="column is-left is-one-third" style="color:rgb(199, 198, 198)">
+      <strong style="color:rgb(199, 198, 198)" >Disclaimer:</strong>Finalysis is data not advice. Do not rely upon Finalysis as a substitute for an extensive independent market research before making your trading decisions.
+      <br>
+      <a style="color:rgb(199, 198, 198)" href="/contact" >Contact</a> | <a style="color:rgb(199, 198, 198)" href="/insights">Insights</a> | <a style="color:rgb(199, 198, 198)" href="/legal">Legal</a>
+    </p>
+  </div>
+</footer>
+

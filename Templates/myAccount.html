@@ -1,0 +1,209 @@
+{% extends 'userbase.html' %}
+{% block content %}
+
+<div class="container">
+<aside class="menu">
+    <p class="menu-label">
+      General
+    </p>
+    
+    <div id="modal-js-example11" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            
+    
+              
+            <form action="/user/inquiry/api" method="POST">
+                <center>
+                    <div>
+                        <p>Contact us for API access and available plans.</p>
+                    </div>
+                </center>
+
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Name" id="APIname" name="APIname" value="{{request.form.APIname}}">
+                    </div>
+                  </div>
+                  
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                      <input class="input" type="email" placeholder="Email" id="APIemail" name="APIemail" value="{{request.form.APIemail}}">
+                    </div>
+                </div>
+            
+                <div class="field">
+                    <label class="label">Phone</label>
+                    <div class="control">
+                      <input class="input" type="phone" placeholder="Phone Number" placeholder="APIphone" id="APIphone" name="APIphone" value="{{request.form.APIphone}}">
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="label">Message</label>
+                    <div class="control">
+                      <textarea class="textarea" placeholder="Why our API is right for you." id="APImessage" name="APImessage" value="{{request.form.APImessage}}"></textarea>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button class="button is-link" style="background-color: #FF3933; color: #FFF;">Submit</button>
+                    </div>
+                  </div>
+            </form>
+              
+            <!-- Your content -->
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+
+    <ul class="menu-list">
+      <li><a>My Tier : <strong>{{tier}}</strong> </a></li>
+      
+      
+      <li><a class="js-modal-trigger" data-target="modal-js-example11">Upgrade Tier | Get API access</a></li>
+    </ul>
+    
+    <p class="menu-label">
+      Privacy/Security
+    </p>
+    <!-- JS MODALS --> 
+        <div id="modal-js-example9" class="modal">
+          <div class="modal-background"></div>
+        
+          <div class="modal-content">
+            <div class="box">
+              
+      
+                
+              <center>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for msg in messages %}
+                      <p>{{msg}}</p>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %} 
+                
+                
+                  <form action="/user/change/{{email}}" method="POST">
+                  <div class="field">
+                    <label class="label is-large">New Email</label>
+                    <div class="control">
+                      <input class="input is-large" type="text" placeholder=" New Email" id="newemail" name="newemail" value="{{request.form.newemail}}">
+                    </div>
+                    <!-- <p class="help is-success">This username is available</p> -->
+                  </div>
+                  
+                
+                  <div class="field">
+                    <label class="label is-large">Confirm New Email</label>
+                    <div class="control">
+                      <input class="input is-large" type="text" placeholder="Confirm Email" id="confirmnewemail" name="confirmnewemail" value="{{request.form.confirmnewemail}}">
+                    </div>
+                    <br>
+                    <br>
+                    
+                  </div>
+                
+                
+                
+                
+                  
+                <div class="box has-text-centered"">
+                        <div class="control">
+                          {% if error %}
+                          <p>{{error}}</p>
+                          {% endif %}
+                          <button class="button is-link is-large" style="background-color: #FF3933; color: #FFF">Change Email</button>
+                        </div>
+                </div>
+                </form>
+                </center>
+                
+              <!-- Your content -->
+            </div>
+          </div>
+        
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+            <!-- JS MODALS --> 
+            <div id="modal-js-example10" class="modal">
+                <div class="modal-background"></div>
+              
+                <div class="modal-content">
+                  <div class="box">
+                    
+            
+                      
+                    <center>
+                      {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                          {% for msg in messages %}
+                            <p>{{msg}}</p>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith %} 
+                      
+                      
+                        <form action="/user/change/password/{{email}}" method="POST">
+                        <div class="field">
+                          <label class="label is-large">New Password</label>
+                          <div class="control">
+                            <input class="input is-large" type="password" placeholder=" New Password" id="newpassword" name="newpassword" value="{{request.form.newpassword}}">
+                          </div>
+                          <!-- <p class="help is-success">This username is available</p> -->
+                        </div>
+                        
+                      
+                        <div class="field">
+                          <label class="label is-large">Confirm New Password</label>
+                          <div class="control">
+                            <input class="input is-large" type="password" placeholder="Confirm Password" id="confirmnewpassword" name="confirmnewpassword" value="{{request.form.confirmnewpassword}}">
+                          </div>
+                          <br>
+                          <br>
+                          
+                        </div>
+                      
+                      
+                      
+                      
+                        
+                      <div class="box has-text-centered"">
+                              <div class="control">
+                                {% if error %}
+                                <p>{{error}}</p>
+                                {% endif %}
+                                <button class="button is-link is-large" style="background-color: #FF3933; color: #FFF">Change Password</button>
+                              </div>
+                      </div>
+                      </form>
+                      </center>
+                      
+                    <!-- Your content -->
+                  </div>
+                </div>
+              
+                <button class="modal-close is-large" aria-label="close"></button>
+              </div>
+    <ul class="menu-list">
+      <li>Email: <strong>{{email}}</strong></li>
+      <li><a class="js-modal-trigger" data-target="modal-js-example9">Change Email</a></li>
+      <li><a class="js-modal-trigger" data-target="modal-js-example10">Change Password</a></li>
+      
+    </ul>
+  </aside>
+</div>
+
+
+
+{% endblock %}

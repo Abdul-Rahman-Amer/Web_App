@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel = "stylesheet" type="text/css" href="{{ url_for('static',filename='Css/core.css') }}">
+<link rel = "stylesheet" href="{{ url_for('static',filename='Css/overpass.css') }}">
+
+<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="Static/logo.png" width="112" height="28">
+    </a>
+  </div>
+
+  <div  class="navbar-menu">
+    <div class="navbar-end">
+
+      <a class="navbar-item" hrep="/myportfolio">
+        My Portfolio
+        </a>
+      <a class="button is-primary" style="background-color: #FF3933; color: #FFF" href="/logout">
+          Logout
+        </a>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="box">
+<div  class="columns">
+
+    <ul class="column is-3" style="overflow:scroll;">
+
+        <li ><a class="content is-large has-text-black" href="/forinvestors">For Investors</a></li>
+        <li><a class="content is-large has-text-black" href="/forriskanalysis">For Risk Analysis</a></li>
+        <li><a class="content is-large has-text-black" href="/tradingdesk">For Trading Desks</a></li>
+    <hr style="border:2px solid black; border-radius: 1px; width: 70%;" >
+    
+    <div class="columns is is-mobile is-vcentered">
+      <div class="column is-3">
+        <img class="image is-64x64 " src="Static/A_copy.png" alt="">
+      </div>
+      <div class="column is-left is-large">
+        <strong><p>test[nyse]</p></strong>
+      </div>
+    </div>
+    <div class="columns is is-mobile is-vcentered">
+      <div class="column is-3">
+        <img class="image is-64x64 " src="Static/A_copy.png" alt="">
+      </div>
+      <div class="column is-left is-large">
+        <strong><p>test[nyse]</p></strong>
+      </div>
+    </div>
+    <div class="columns is is-mobile is-vcentered">
+      <div class="column is-3">
+        <img class="image is-64x64 " src="Static/A_copy.png" alt="">
+      </div>
+      <div class="column is-left is-large">
+        <strong><p>test[nyse]</p></strong>
+      </div>
+    </div>
+    <div class="columns is is-mobile is-vcentered">
+      <div class="column is-3">
+        <img class="image is-64x64 " src="Static/A_copy.png" alt="">
+      </div>
+      <div class="column is-left is-large">
+        <strong><p>test[nyse]</p></strong>
+      </div>
+    </div>
+    <div class="columns is is-mobile is-vcentered">
+      <div class="column is-3">
+        <img class="image is-64x64 " src="Static/A_copy.png" alt="">
+      </div>
+      <div class="column is-left is-large">
+        <strong><p>test[nyse]</p></strong>
+      </div>
+    </div>
+    <hr style="border:2px solid black; border-radius: 1px; width: 70%;" >
+    </ul>
+
+<div class="column is-half is-right">
+    <strong class="is-size-4"><h1>Cut through the noise to learn what will happen next.</h1></strong>
+    <br>
+    <strong class="is-size-4"><h2>We provide next-level forecasts for better decision making. </h2></strong>
+    <br>
+    <strong class="is-size-4"><h2>The power behind more-profitable trading strategies.</h2></strong>
+    <br>
+    <strong class="is-size-4"><h1>A Leap Ahead</h1></strong>
+    <p>Access Finalysis online, in Excel, or through the API with analysis delivered into your existing workflow. We combine economic insight with machine learning to deliver forecasts previously unknown to all but the largest of funds.</p>
+    <br>
+    <strong class="is-size-4"><h2>Better than Human</h2></strong>
+    <br>
+    <p>People are good at a lot of things, but discovering complex patterns is not one of them. Since 1997, computers have dominated chess. In 2017, a machine beat the world’s top Go player. Entering 2023, Finalysis forecasts better than WalStreet analyst.</p>
+    <br>
+    <p>Don’t just take our word for it. See for yourself.</p>
+    <br>
+
+<form>
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Name">
+        </div>
+      </div>
+      
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input" type="email" placeholder="Email@Email.com">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Phone</label>
+        <div class="control">
+          <input class="input" type="phone" placeholder="Phone Number">
+        </div>
+    </div>
+    
+    <div class="field">
+        <label class="label">Message</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Tell us why Finalysis interest you"></textarea>
+        </div>
+      </div>
+      
+      
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" style="background-color: #FF3933; color: #FFF;">Submit</button>
+        </div>
+      </div>
+</form>
+</div>
+
+</div>
+
+<footer class="footer" style="background-color: white;">
+  <div class="content is-small">
+    <p class="column is-left is-one-third" style="color:rgb(199, 198, 198)">
+      <strong style="color:rgb(199, 198, 198)" >Disclaimer:</strong>Finalysis is data not advice. Do not rely upon Finalysis as a substitute for an extensive independent market research before making your trading decisions.
+      <br>
+      <a style="color:rgb(199, 198, 198)" href="/contact" >Contact</a> | <a style="color:rgb(199, 198, 198)" href="/insights">Insights</a> | <a style="color:rgb(199, 198, 198)" href="/legal">Legal</a>
+    </p>
+  </div>
+</footer>

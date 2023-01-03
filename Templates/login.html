@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel = "stylesheet" type="text/css" href="{{ url_for('static',filename='Css/core.css') }}">
+<link rel = "stylesheet" href="{{ url_for('static',filename='Css/overpass.css') }}">
+
+
+<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="Static/logo.png" width="112" height="28">
+      </a>
+    </div>
+  
+    <div  class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/about">
+          About
+        </a>
+        <a class="navbar-item" href="/signup">
+          Sign up
+          </a>
+        <a class="button is-primary" style="background-color: #FF3933; color: #FFF" href="/login">
+            Log in
+          </a>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+
+<center>
+
+<div class="card mx-6" style="padding: 50px 50px 50px 50px;width: 30%;margin: 0px auto 0px auto;">
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for msg in messages %}
+      <p>{{msg}}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %} 
+
+
+  <form action="/login" method="POST">
+  <div class="field">
+    <label class="label is-large">Email</label>
+    <div class="control">
+      <input class="input is-large" type="text" placeholder="Email" id="loginemail" name="loginemail" value="{{request.form.loginemail}}">
+    </div>
+    <!-- <p class="help is-success">This username is available</p> -->
+  </div>
+  
+
+  <div class="field">
+    <label class="label is-large">Password</label>
+    <div class="control">
+      <input class="input is-large" type="password" placeholder="Password" id="loginpassword" name="loginpassword" value="{{request.form.loginpassword}}">
+    </div>
+    <br>
+    <br>
+    <p>New to Finalysis?<a href="/signup">Sign Up</a></p>
+  </div>
+
+
+
+
+  
+<div class="box has-text-centered"">
+        <div class="control">
+          {% if error %}
+          <p>{{error}}</p>
+          {% endif %}
+          <button class="button is-link is-large" style="background-color: #FF3933; color: #FFF">Login</button>
+        </div>
+</div>
+</form>
+</div>
+</center>
+
+
+<footer class="footer" style="background-color: white;">
+  <div class="content is-small">
+    <p class="column is-left is-one-third" style="color:rgb(199, 198, 198)">
+      <strong style="color:rgb(199, 198, 198)" >Disclaimer:</strong>Finalysis is data not advice. Do not rely upon Finalysis as a substitute for an extensive independent market research before making your trading decisions.
+      <br>
+      <a style="color:rgb(199, 198, 198)" href="/contact" >Contact</a> | <a style="color:rgb(199, 198, 198)" href="/insights">Insights</a> | <a style="color:rgb(199, 198, 198)" href="/legal">Legal</a>
+    </p>
+  </div>
+</footer>

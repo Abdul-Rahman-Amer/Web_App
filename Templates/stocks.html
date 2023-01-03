@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+
+
+
+
+
+
+<div class="box">
+  <div  class="columns">
+  
+      <ul class="column is-2">
+        <br>
+  
+      
+  
+          <li ><a class="content is-large has-text-black" href="/forinvestors">For Investors</a></li>
+          <li><a class="content is-large has-text-black" href="/forriskanalysis">For Risk Analysis</a></li>
+          <li><a class="content is-large has-text-black" href="/tradingdesk">For Trading Desks</a></li>
+          <hr class="new"> 
+          <li class="content-is-Large has-text-black"><strong>Popular</strong></li>
+          <br>
+      
+     
+      {% for a in top5 %}
+      <div class="a_hover">
+      <div class="columns is-3">
+        <!-- <li class="columns"> -->
+      <div class="column">
+        <a class="a_hover"  href="/stocks/{{a[0]}}"><img class="image is-48x48 " src="{{ url_for('static', filename='logos/' + a[0]  + '.png' )}}" alt="img coming soon"></a>
+      </div></a>
+      <div class="column">
+        <a class="a_hover"  href="/stocks/{{a[0]}}"><strong><p>{{a[0]}}</p></strong></a>
+      </div>
+      <div class="column">
+        <a class="a_hover"  href="/stocks/{{a[0]}}"><strong><p>[{{a[1]}}]</p></strong></a>
+      </div>
+    </div>
+  
+    <!-- </li> -->
+  
+  </div>
+    {% endfor %}
+    <hr class="new"> 
+    <div class="content is-small">
+      <p class="column" style="color:rgb(199, 198, 198)">
+        <strong style="color:rgb(199, 198, 198)" >Disclaimer:</strong>Finalysis is data not advice. Do not rely upon Finalysis as a substitute for an extensive independent market research before making your trading decisions.
+        <br>
+        <a style="color:rgb(199, 198, 198)" href="/contact" >Contact</a> | <a style="color:rgb(199, 198, 198)" href="/terms">Terms</a> | <a style="color:rgb(199, 198, 198)" href="/privacy">Privacy</a>
+      </p>
+    </div>
+    </ul>
+    <ul class="column is-1"></ul>
+
+    <ul class="column is-6 is-right">
+      
+      <div class="column is-centered">
+        <h1 class="content is-size-3 has-text-justified has-text-weight-bold has-text-black ">Daily Market Forecasts</h1>
+      </div>
+
+      <form action="/" class="new" role="form" method="POST">
+      <div class="field has-addons ">
+        
+          <div class="control is-expanded">
+
+            <input class="input" type="text" placeholder="Ticker" id="stocks" list="stocks-list" id="ticker" name="ticker" value="{{request.form.ticker}}">
+            <datalist id="stocks-list">
+              {% for stock in stocks %} 
+              <option>{{ stock[0] }}</option>
+              {% endfor %}
+            </datalist>
+          
+          </div>
+          
+          <div class="control">
+            
+            <button class="button is-info" style="background-color: black;">
+              Search
+            </button>
+          
+          </div>
+        
+        </div>
+      </form>
+        <br>
+        <br>
+
+            <div>
+              <div>
+                <div>
+                {% if display %}
+                <div class="a_hover">
+                  <div class="columns is-gapless">
+                    <!-- Seperate -->
+
+
+
+
+
+
+                      <div class="column">
+                      
+                        <svg width="360" height="150">
+                          <rect x="0" y="0" width="360" height="120" style="fill:#d6dfe4;stroke:#EEEEEE;stroke-width:2;opacity:0.5" />
+                          <rect x="140" y="10" width="100" height="100" style="fill:#fff;stroke:#000;stroke-width:1;opacity:1" />
+                          <rect x="250" y="10" width="100" height="100" style="fill:#fff;stroke:#000;stroke-width:1;opacity:1" />
+                          <a href="/stocks/{{display[0][0]}}"><image x="10" y="10" href="{{ url_for('static', filename='logos/' + display[0][0] +'.png')}}" height="50" width="50" /></a>
+                          <text x="65" y="20" style="font: 14px sans-serif;">{{display[0][0]}}</text>
+                          <text x="65" y="30" style="font: 12px sans-serif;">[{{forecast_exchange[0][0]}}]</text>
+                          <text x="145" y="30" style="font: bold 14px sans-serif;">Open</text>
+                          <text x="255" y="30" style="font: bold 14px sans-serif;">Close</text>
+                          <image x="135" y="47" href="{{ url_for('static', filename='up.png')}}" height="68" width="68" />
+                          <image x="245" y="47" href="{{ url_for('static', filename='down.png')}}" height="68" width="68" />
+                          <text x="145" y="50" style="font: 14px sans-serif;">+0.2 to 0.4</text>
+                          <text x="255" y="50" style="font: 14px sans-serif;">-0.3 to 0.5</text>
+                          <!--
+                          <polygon points="200,20 250,100 150,100" style="fill:#333;stroke:#000;stroke-width:1" />
+                          -->
+                      </svg>
+                      </div>
+                    <!-- Seperate -->
+                    <div id="modal-js-example3" class="modal">
+                      <div class="modal-background">
+                      </div>
+                      <div class="modal-content">
+                        <div class="box">
+                          <center>
+                            <p>Sign up for FREE to create a custom profile!</p>
+                          </center>
+                        </div>
+                      </div>
+                    
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div id="modal-js-example4" class="modal">
+                      <div class="modal-background">
+                      </div>
+                      <div class="modal-content">
+                        <div class="box">
+                          <center>
+                            <p>Sign up for FREE to Like your favorite stocks!</p>
+                          </center>
+                        </div>
+                      </div>
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div id="modal-js-example5" class="modal">
+                      <div class="modal-background">
+                      </div>
+                      <div class="modal-content">
+                        <div class="box">
+                          <center>
+                            <h2>Share to Social Media:</h2>
+                          </center>
+                              
+                              <a href="#" class="fa fa-facebook"></a>
+                              <a href="#" class="fa fa-twitter"></a>
+                              <a href="#" class="fa fa-google"></a>
+                              <a href="#" class="fa fa-linkedin"></a>
+                              <a href="#" class="fa fa-youtube"></a>
+                              <a href="#" class="fa fa-instagram"></a>
+                              <a href="#" class="fa fa-pinterest"></a>
+                              <a href="#" class="fa fa-snapchat-ghost"></a>
+                              <a href="#" class="fa fa-skype"></a>
+                              <a href="#" class="fa fa-android"></a>
+                              <a href="#" class="fa fa-dribbble"></a>
+                              <a href="#" class="fa fa-vimeo"></a>
+                              <a href="#" class="fa fa-tumblr"></a>
+                              <a href="#" class="fa fa-vine"></a>
+                              <a href="#" class="fa fa-foursquare"></a>
+                              <a href="#" class="fa fa-stumbleupon"></a>
+                              <a href="#" class="fa fa-flickr"></a>
+                              <a href="#" class="fa fa-yahoo"></a>
+                              <a href="#" class="fa fa-reddit"></a>
+                              <a href="#" class="fa fa-rss"></a>                              
+                          </div>
+                      </div>
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div class="column">
+                      <p>
+                        <a class="js-modal-trigger" data-target="modal-js-example3">
+                          <ion-icon size="large" name="add-circle-outline"></ion-icon>
+                        </a>
+                      </p>
+                      <p>
+                        <a class="js-modal-trigger" data-target="modal-js-example4">
+                          <ion-icon size="large" name="heart-outline"></ion-icon>
+                        </a> 
+                      </p>
+                      <p>
+                        <a class="js-modal-trigger" data-target="modal-js-example5">
+                          <ion-icon size="large"name="share-outline"></ion-icon>
+                        </a>
+                      </p>
+                    </div>
+                    <div class="column">
+                    </div>
+                </div>
+                </div>
+                  <br>
+                  <br>
+                {% else %}
+                  {% for a in random5 %}
+                  <div class="a_hover"><li class="columns is-mobile is-centered is-vcentered">
+                    <!-- <div class="column">
+                      <img class="image is-64x64" src="{{ url_for('static', filename='logos/' + a[0]  + '.png' )}}" alt="test" width="80px" height="20px">
+                      <a href="#" title="Love it" class="btn btn-counter multiple-count" data-count="0"><span>&#x2764;</span> Love it</a></p>
+                    </div> -->
+                    <div class="column">
+                      <a href="/stocks/{{a}}"><img class="content is-medium image is-64x64" src="{{ url_for('static', filename='logos/' + a  + '.png' )}}" alt="test" width="80px" height="20px"></a>
+                    </div>
+                    <div class="column ">
+                      <a class="a_hover" href="/stocks/{{a}}"><p class="content "><strong>{{a}}</strong></p></a>
+                      
+                    </div>
+
+                    <div class="column">
+                      <a class="a_hover" href="/stocks/{{a}}"><p class="content"><p><strong>exchange</strong></p></a>
+                      
+                    </div>
+                    <div id="modal-js-example3" class="modal">
+                      <div class="modal-background"></div>
+                    
+                      <div class="modal-content">
+                        <div class="box">
+                          
+                  
+                            
+                          <center>
+                            <p>Sign up for FREE to create a custom profile!</p>
+                            </center>
+                            
+                          
+                        </div>
+                      </div>
+                    
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div class="column">
+                      <a class="js-modal-trigger" data-target="modal-js-example3">
+                        <ion-icon size="large" name="add-circle-outline"></ion-icon>
+                      </a>
+                    </div>
+                    <!-- Seperate -->
+                    <div id="modal-js-example4" class="modal">
+                      <div class="modal-background"></div>
+                    
+                      <div class="modal-content">
+                        <div class="box">
+                          
+                  
+                            
+                          <center>
+                            <p>Sign up for FREE to Like your favorite stocks!</p>
+                            </center>
+                            
+                          
+                        </div>
+                      </div>
+                    
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div class="column">
+                      <a class="js-modal-trigger" data-target="modal-js-example4">
+                        <ion-icon size="large" name="heart-outline"></ion-icon>
+                      </a> 
+                    </div>
+                    <!-- Seperate -->
+                    <div id="modal-js-example5" class="modal">
+                      <div class="modal-background"></div>
+                    
+                      <div class="modal-content">
+                        <div class="box">
+                          
+                  
+                            
+                          
+                            
+                              <center>
+                              <h2>Share to Social Media:</h2>
+                            </center>
+                              <!-- Add font awesome icons -->
+                              <a href="#" class="fa fa-facebook"></a>
+                              <a href="#" class="fa fa-twitter"></a>
+                              <a href="#" class="fa fa-google"></a>
+                              <a href="#" class="fa fa-linkedin"></a>
+                              <a href="#" class="fa fa-youtube"></a>
+                              <a href="#" class="fa fa-instagram"></a>
+                              <a href="#" class="fa fa-pinterest"></a>
+                              <a href="#" class="fa fa-snapchat-ghost"></a>
+                              <a href="#" class="fa fa-skype"></a>
+                              <a href="#" class="fa fa-android"></a>
+                              <a href="#" class="fa fa-dribbble"></a>
+                              <a href="#" class="fa fa-vimeo"></a>
+                              <a href="#" class="fa fa-tumblr"></a>
+                              <a href="#" class="fa fa-vine"></a>
+                              <a href="#" class="fa fa-foursquare"></a>
+                              <a href="#" class="fa fa-stumbleupon"></a>
+                              <a href="#" class="fa fa-flickr"></a>
+                              <a href="#" class="fa fa-yahoo"></a>
+                              <a href="#" class="fa fa-reddit"></a>
+                              <a href="#" class="fa fa-rss"></a>                              
+                                    
+                              
+                            
+                            
+                          
+                        </div>
+                      </div>
+                    
+                      <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <!-- Seperate -->
+                    <div class="column">
+                      <a class="js-modal-trigger" data-target="modal-js-example5"><ion-icon size="large"name="share-outline"></ion-icon></a>
+                    </div>
+
+                  </li>
+                  </div>
+                </a>
+
+                  {% endfor %}
+
+                <br>
+                <br>
+
+                {% endif %}
+                </div>
+
+
+
+                <strong><h1>Correlations</h1></strong>
+                <hr class="new"> 
+                {% for a in display %}
+                <div class="a_hover">
+                  
+                <div class="columns">
+                    <div class="column">
+                        <p class="content "><p><strong>OC:{{ a[2]}}</strong></p>
+                        <p><strong>CC:{{ a[3]}}</strong></p></p>
+                    </div>
+                    <div class="column">
+                      <a class="a_hover"  href="/stocks/{{a[1]}}"><img class="image is-64x64" src="{{ url_for('static', filename='logos/' + a[1]  + '.png' )}}" alt="test" width="80px" height="20px"></a>
+                    </div>
+                    <div class="column">
+                      <a class="a_hover"  href="/stocks/{{a[1]}}"><p><strong>{{ a[1]}}</strong></p></a>
+                    </div>
+                    <div class="column">
+                      <a class="a_hover"  href="/stocks/{{a[0]}}"><p>{{a[8]}}</p></a>
+                       
+                    </div>
+                  
+
+                
+                    
+                </div>
+              
+              </div>
+                {% endfor %}
+            
+
+              </div>
+
+
+            </div>
+
+        <br>
+        <br>
+            </div>
+      </ul>
+</div>
+</div>
+
+{% endblock %}

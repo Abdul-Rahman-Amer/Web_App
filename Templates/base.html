@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel = "stylesheet" type="text/css" href="{{ url_for('static',filename='Css/core.css') }}">
+<link rel = "stylesheet" href="{{ url_for('static',filename='Css/overpass.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script type="text/javascript" src="{{ url_for('static', filename='javascript.js') }}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<nav class="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="{{ url_for('static', filename='logo.png')}}" width="112" height="28">
+    </a>
+  </div>
+
+  <div  class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" href="/about">
+        About
+      </a>
+      <div id="modal-js-example2" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            
+    
+              
+            <center>
+              
+              <form action="/signup" method="POST">
+              <div class="field">
+                  <label class="label is-large">Name</label>
+                  <div class="control">
+                    <input class="input is-large" type="text" placeholder="Name" id="signupname" name="signupname" value="{{request.form.signupname}}">
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label is-large">Email</label>
+                  <div class="control">
+                    <input class="input is-large" type="email" placeholder="Email input" id="signupemail" name="signupemail" value="{{request.form.signupemail}}">
+                </div>
+              </div>
+              
+              <div class="field">
+                  <label class="label is-large">Confrim Email</label>
+                  <div class="control">
+                    <input class="input is-large" type="email" placeholder="Confirm Email" id="signupconfirmemail" name="signupconfirmemail" value="{{request.form.signupconfirmemail}}">
+                  </div>
+              </div>
+              
+              <div class="field">
+                  <label class="label is-large">Password</label>
+                  <div class="control">
+                    <input class="input is-large" type="password" placeholder="Password" id="signuppassword" name="signuppassword" value="{{request.form.signuppassword}}">
+                  </div>
+              </div>
+              
+              <div class="field">
+                  <label class="label is-large">Confirm Password</label>
+                  <div class="control">
+                    <input class="input is-large" type="password" placeholder="Confirm Password" id="signupconfirmpassword" name="signupconfirmpassword" value="{{request.form.signupconfirmpassword}}">
+                  </div>
+              </div>
+                
+              <div class="field">
+                  <div class="control">
+                    <label class="checkbox">
+                      <input type="checkbox">
+                      I agree to the <a href="/terms_and_conditions">terms and conditions</a>
+                    </label>
+                    <br>
+                    <div>
+                      <p>Already have an account? <a href="/login">Login</a></p>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="box has-text-centered"">
+                <div class="control">
+                {% if message %}
+                <p class="message"><strong>{{message}}</strong></p>
+                {% endif %}
+                <button  class="button is-link is-large" style="background-color: #FF3933; color: #FFF">Submit</button>
+                </div>
+              </div>
+              </form>
+              
+              </center>
+              
+            <!-- Your content -->
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+        <div id="modal-js-example" class="modal">
+          <div class="modal-background"></div>
+        
+          <div class="modal-content">
+            <div class="box">
+              
+      
+                
+              <center>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for msg in messages %}
+                      <p>{{msg}}</p>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %} 
+                
+                
+                  <form action="/login" method="POST">
+                  <div class="field">
+                    <label class="label is-large">Email</label>
+                    <div class="control">
+                      <input class="input is-large" type="text" placeholder="Email" id="loginemail" name="loginemail" value="{{request.form.loginemail}}">
+                    </div>
+                    <!-- <p class="help is-success">This username is available</p> -->
+                  </div>
+                  
+                
+                  <div class="field">
+                    <label class="label is-large">Password</label>
+                    <div class="control">
+                      <input class="input is-large" type="password" placeholder="Password" id="loginpassword" name="loginpassword" value="{{request.form.loginpassword}}">
+                    </div>
+                    <br>
+                    <br>
+                    <p>New to Finalysis?<a href="/signup">Sign Up</a></p>
+                  </div>
+                
+                
+                
+                
+                  
+                <div class="box has-text-centered"">
+                        <div class="control">
+                          {% if error %}
+                          <p>{{error}}</p>
+                          {% endif %}
+                          <button class="button is-link is-large" style="background-color: #FF3933; color: #FFF">Login</button>
+                        </div>
+                </div>
+                </form>
+                </center>
+                
+              <!-- Your content -->
+            </div>
+          </div>
+        
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+        <a class="js-modal-trigger navbar-item" data-target="modal-js-example2">
+          Sign Up
+        </a>
+        <button class="js-modal-trigger button is-primary" style="background-color:red ;"  data-target="modal-js-example">
+          Login
+        </button>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
+<footer class="footer" style="background-color: white;">
+    <!-- <div class="content is-small">
+      <p class="column is-left is-one-third" style="color:rgb(199, 198, 198)">
+        <strong style="color:rgb(199, 198, 198)" >Disclaimer:</strong>Finalysis is data not advice. Do not rely upon Finalysis as a substitute for an extensive independent market research before making your trading decisions.
+        <br>
+        <a style="color:rgb(199, 198, 198)" href="/contact" >Contact</a> | <a style="color:rgb(199, 198, 198)" href="/insights">Insights</a> | <a style="color:rgb(199, 198, 198)" href="/legal">Legal</a>
+      </p>
+    </div> -->
+  </footer>
