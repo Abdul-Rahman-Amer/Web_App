@@ -662,7 +662,7 @@ if __name__ == "__main__":
             db_user = 'root'
 
         if db_pass is None:
-            db_pass = '13L0ck22!Mjordan23!'
+            db_pass = ''
 
         if db_pool_size is None:
             db_pool_size = 5
